@@ -6,7 +6,7 @@ export default function Banner() {
   return (
     <>
     {/* services Banner */}
-      <section className="flex justify-center pt-[50px]  ">
+      <section className="flex justify-center pt-[50px] container mx-auto ">
       <figure className="relative ">
         <Image
           src={"/assets/images/checkout/checkout.png"}
