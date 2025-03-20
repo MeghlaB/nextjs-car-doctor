@@ -5,6 +5,7 @@ import React from 'react'
 import Image from "next/image";
 import { AiOutlineArrowRight } from 'react-icons/ai';
 import Link from 'next/link';
+import { ClientPageRoot } from 'next/dist/client/components/client-page';
 
 export default  async function Servicepage({params}) {
     const id = await params
@@ -12,6 +13,7 @@ export default  async function Servicepage({params}) {
     // services collection thke data fetch kora 
     const serviceCollection = dbcollection(collectionGroup.servicesCollection)
     const data = await serviceCollection.findOne({_id: new ObjectId(id._id)})
+    
 
     // services
     const services = [
@@ -42,6 +44,34 @@ export default  async function Servicepage({params}) {
         </div>
        </div>
 
+       {/* facility */}
+       <div className='grid grid-cols-2 gap-4  border-amber-950 py-4 '>
+        {
+          data.facility.map(item=>{
+            return (
+              <div key={item._id} className='bg-[#F3F3F3] w-[364px] h-[204px] rounded-2xl  shadow-accent border-t-4 border-t-red-700'>
+               <div className=' ps-6 pt-4'>
+               <h1 className='text-2xl font-bold space-y-4'>{item.name}</h1>
+               <p className='text-gray-500  '>{item?.details}</p>
+               </div>
+              </div>
+            )
+          })
+        }
+
+       </div>
+        <div>
+          <div>
+            <h4 className='text-gray-500'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</h4>
+          </div>
+
+          <div className='pt-8'>
+            <h1 className='text-3xl font-bold'>3 Simple Steps to Process</h1>
+            <div>
+            <h4 className='text-gray-500'>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</h4>
+          </div>
+          </div>
+        </div>
 
 
 
@@ -85,8 +115,7 @@ export default  async function Servicepage({params}) {
 
 
 
-      <p>{id._id}</p>
-      <p>{JSON.stringify(data)}</p>
+      
     </div>
   )
 }
