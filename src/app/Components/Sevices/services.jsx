@@ -1,12 +1,13 @@
-import dbcollection from '@/lib/dbConnect'
+import dbcollection, { collectionGroup } from '@/lib/dbConnect'
 import Image from 'next/image'
 import React from 'react'
 import { AiOutlineArrowRight } from "react-icons/ai";
 import SectionTitle from '../Sectiontitle/Sectiontitle';
+import Link from 'next/link';
 
 export default async function Services() {
     // database thake data.....................
-    const serviceCollection = dbcollection('text-services')
+    const serviceCollection = dbcollection(collectionGroup.servicesCollection)
     const data = await serviceCollection.find({}).toArray()
     console.log(data)
 
@@ -33,7 +34,7 @@ export default async function Services() {
                         <h1 className=' text-2xl lg:text-3xl font-bold'>{item?.title}</h1>
                         <div className='text-2xl font-bold text-red-500 flex items-center justify-between pt-3'>
                         <p className='text-xl font-bold text-red-500'><span>Price :</span>{item?.price}</p>
-                        <p><AiOutlineArrowRight /></p>
+                        <Link href={`/services/${item?._id}`}><AiOutlineArrowRight /></Link>
                         </div>
                     </div>
                 </div>
